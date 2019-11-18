@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% load staticfiles %}
+	<title>Move78ai Task</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+	<link href="{% static 'css/style.css' %}" rel="stylesheet">
+	{% block css %}
+	{% endblock %}
+	<script src="{% static 'js/jquery.min.js' %}"></script>
+	<script src="{% static 'js/popper.min.js' %}"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	{% block scripts %}
+    {% endblock %}
+	
+</head>
+<body>
+<div class="container">
+	<!-- header -->
+  	<div class="jumbotron">
+	  	<img src="https://move78ai.com/wp-content/themes/mxp_base_theme/mxp_theme/images/1_home__logo_light.png" alt="move78ai img"/>
+	    <h1>Move78ai Task</h1>
+	    <p>We are implementing a binary search tree</p>
+	</div>
+	<!-- /header -->
+	{% block content %}
+	{% endblock %}
+	
+	<!-- footer -->
+    <footer class="footer container border-top mt-5">
+        <div class="container text-center pt-2">
+            <br>
+            <p><a href="">&copy; {% now "Y" %} | Designed by Beekesh Singh</a>
+        </div>
+    </footer>
+    <!-- /footer -->
+</div>
+</body>
+</html>

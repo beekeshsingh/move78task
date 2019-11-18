@@ -1,0 +1,70 @@
+
+{% extends 'layout/base.html' %}
+{% load staticfiles %}
+{% block css %}
+    <link href="{% static 'css/tree.css' %}" rel="stylesheet">
+{% endblock %}
+{% block scripts %}
+    <script src="{% static 'js/common.js' %}"></script>
+{% endblock %}
+{% block content %}
+<button type="button" class="btn btn-primary float-right" onclick="window.location='{% url 'home' %}';" style="cursor: pointer;">Home</button>
+  <!-- Button to Open the Modal -->
+<button type="button" class="btn btn-primary float-right mr-2" data-toggle="modal" data-target="#myModal">
+    Add Node
+  </button>
+<div class="container mt-3">
+  <h2>Tree Name: <b>{{ tree.0.name | capfirst }}</b></h2>
+  <div class="container">
+    Number of nodes in {{ tree.0.name | capfirst }} : {{ nodes | length }} <br>
+    (Note: Maximum 22 nodes will be display because design is not responsive, Hover on nodes subtree will be highlighted)
+      {% include "home/subtree.html" with nodes=nodes %}
+  </div>
+  <div class="clearfix"></div>
+  
+  <div class="row mb-4">
+      <button type="button" id="preordertraversal" data-url="{% url 'traversal' %}" data-token="{{ csrf_token }}" data-travel-type="preorder" name="{{ tree.0.id }}" class="btn btn-primary btn-sm mr-4" >Pre-Order Traversal</button>
+      <div id="preorder"></div>  
+  </div>
+  <div class="row mb-4">
+      <button type="button" id="inordertraversal" data-url="{% url 'traversal' %}" data-token="{{ csrf_token }}" data-travel-type="inorder" name="{{ tree.0.id }}" class="btn btn-primary btn-sm mr-4" >In-Order Traversal</button>
+      <div id="inorder"></div>  
+  </div>
+  <div class="row mb-4">
+      <button type="button" id="postordertraversal" data-url="{% url 'traversal' %}" data-token="{{ csrf_token }}" data-travel-type="postorder" name="{{ tree.0.id }}" class="btn btn-primary btn-sm mr-4" >Post-Order Traversal</button>
+      <div id="postorder"></div>  
+  </div>
+  <!-- The Modal -->
+  <div class="modal fade" id="myModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      
+        
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Modal Heading</h4>
+        </div>
+        <form method="POST" action="{% url 'addnode' %}">
+        {% csrf_token %}
+          <!-- Modal body -->
+          <div class="modal-body">
+            <input type="hidden" name="tree" value="{{ tree.0.id }}">
+            <input id="node" type="node" class="form-control" name="node" placeholder="Enter node value (Enter one value at a time)" autofocus> 
+            <button class="btn btn-primary btn-sm mt-4" type="submit">Submit</button>
+          </div>
+        </form>  
+        <!-- Modal footer -->
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      
+        
+      </div>
+    </div>
+  </div>
+
+<script type="text/javascript">
+// Traversal data function
+
+</script>
+{% endblock %}
