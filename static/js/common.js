@@ -16,6 +16,7 @@ $(function () {
             success: function (response) {
                 // console.log(response);
                 var obj = response.nodes;
+                $('#inorder').empty();
                 $.each(obj, function(k, v) {
                   $("#inorder").append("<slug class='badge badge-primary badge-pill mr-2'>"+v.value+"</slug>");
                 });
@@ -43,6 +44,7 @@ $(function () {
             success: function (response) {
                 // console.log(response);
                 var obj = response.nodes;
+                $('#preorder').empty();
                 $.each(obj, function(k, v) {
                   $("#preorder").append("<slug class='badge badge-primary badge-pill mr-2'>"+v.value+"</slug>");
                 });
@@ -70,6 +72,7 @@ $(function () {
             success: function (response) {
                 // console.log(response);
                 var obj = response.nodes;
+                $('#postorder').empty();
                 $.each(obj, function(k, v) {
                   $("#postorder").append("<slug class='badge badge-primary badge-pill mr-2'>"+v.value+"</slug>");
                 });
